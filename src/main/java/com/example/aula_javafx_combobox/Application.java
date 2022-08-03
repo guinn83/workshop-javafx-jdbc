@@ -2,6 +2,7 @@ package com.example.aula_javafx_combobox;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -10,8 +11,13 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("mainView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
+            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("MainView.fxml"));
+            ScrollPane scrollPane = fxmlLoader.load();
+
+            scrollPane.setFitToHeight(true);
+            scrollPane.setFitToWidth(true);
+
+            Scene scene = new Scene(scrollPane);
             stage.setTitle("Sample JavaFX application");
             stage.setScene(scene);
             stage.show();
