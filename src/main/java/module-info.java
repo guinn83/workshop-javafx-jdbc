@@ -8,6 +8,6 @@ module com.example.java_javafx1 {
     requires org.kordamp.ikonli.javafx;
     requires eu.hansolo.tilesfx;
 
-    opens com.example.aula_javafx_combobox to javafx.fxml;
-    exports com.example.aula_javafx_combobox;
+    opens com.workshop.javafx to javafx.fxml;
+    exports com.workshop.javafx;
 }

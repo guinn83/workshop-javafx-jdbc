@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.workshop.javafx.MainViewController">
+    <VBox prefHeight="364.0" prefWidth="552.0">
+        <MenuBar>
+            <Menu mnemonicParsing="false" text="Registration">
+                <MenuItem fx:id="menuItemSeller" mnemonicParsing="false" onAction="#onMenuItemSellerAction"
+                          text="Seller"/>
+                <MenuItem fx:id="menuItemDepartment" mnemonicParsing="false" onAction="#onMenuItemDepartmentAction"
+                          text="Department"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <MenuItem fx:id="menuItemSmenuItemAbout" mnemonicParsing="false" onAction="#onMenuItemAboutAction"
+                          text="About"/>
+            </Menu>
+        </MenuBar>
+    </VBox>
+</ScrollPane>
