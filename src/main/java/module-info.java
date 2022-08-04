@@ -7,6 +7,7 @@ module com.example.java_javafx1 {
     requires com.dlsc.formsfx;
     requires org.kordamp.ikonli.javafx;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
 
     opens com.workshop.javafx to javafx.fxml;
     exports com.workshop.javafx;

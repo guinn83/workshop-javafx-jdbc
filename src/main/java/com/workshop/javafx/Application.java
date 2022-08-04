@@ -14,7 +14,6 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("mainView.fxml"));
-//            System.out.println(getClass().getResource("").getPath());
             ScrollPane scrollPane = fxmlLoader.load();
 
             scrollPane.setFitToHeight(true);
