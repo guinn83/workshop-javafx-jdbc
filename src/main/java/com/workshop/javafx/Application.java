@@ -13,7 +13,7 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("mainView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("MainView.fxml"));
             ScrollPane scrollPane = fxmlLoader.load();
 
             scrollPane.setFitToHeight(true);
