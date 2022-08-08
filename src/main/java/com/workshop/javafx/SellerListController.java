@@ -17,7 +17,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-@SuppressWarnings("ClassEscapesDefinedScope")
 public class SellerListController implements Initializable {
 
     private SellerDao sellerDao = DaoFactory.createSellerDao();

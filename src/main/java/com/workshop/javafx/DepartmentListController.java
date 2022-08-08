@@ -3,6 +3,7 @@ package com.workshop.javafx;
 import com.workshop.javafx.model.dao.DaoFactory;
 import com.workshop.javafx.model.dao.DepartmentDao;
 import com.workshop.javafx.model.entities.Department;
+import com.workshop.javafx.model.services.DepartmentService;
 import com.workshop.javafx.util.Alerts;
 import com.workshop.javafx.util.Utils;
 import javafx.collections.FXCollections;
@@ -26,10 +27,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-@SuppressWarnings("ClassEscapesDefinedScope")
 public class DepartmentListController implements Initializable {
 
-    private DepartmentDao departmentDao;
+    private DepartmentService service;
 
     @FXML
     private TableView<Department> tableViewDepartment;
@@ -41,12 +41,9 @@ public class DepartmentListController implements Initializable {
     private Button btNew;
     private ObservableList<Department> obsList;
 
-    public DepartmentDao getDepartmentDao() {
-        return departmentDao;
-    }
 
-    public void setDepartmentDao(DepartmentDao departmentDao) {
-        this.departmentDao = departmentDao;
+    public void setService(DepartmentService service) {
+        this.service = service;
     }
 
     @FXML
@@ -59,7 +56,7 @@ public class DepartmentListController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setDepartmentDao(DaoFactory.createDepartmentDao());
+        setService(new DepartmentService());
         initializeNodes();
         updateTableView();
     }
@@ -73,10 +70,10 @@ public class DepartmentListController implements Initializable {
     }
 
     public void updateTableView() {
-        if (departmentDao == null) {
+        if (service == null) {
             throw new IllegalStateException("Service was null");
         }
-        List<Department> list = departmentDao.findAll();
+        List<Department> list = service.findAll();
         obsList = FXCollections.observableArrayList(list);
         tableViewDepartment.setItems(obsList);
     }
@@ -88,6 +85,7 @@ public class DepartmentListController implements Initializable {
 
             DepartmentFormController controller = loader.getController();
             controller.setDepartment(obj);
+            controller.setService(new DepartmentService());
             controller.updateFormData();
 
             Stage dialogStage = new Stage();
@@ -101,6 +99,7 @@ public class DepartmentListController implements Initializable {
 
         } catch (IOException e) {
             Alerts.showAlert("IO Exception", null, e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
         }
 
     }
