@@ -89,8 +89,7 @@ public class DepartmentListController implements Initializable {
             dialogStage.showAndWait();
 
         } catch (IOException e) {
-//            Alerts.showAlert("IO Exception", null, e.getMessage(), Alert.AlertType.ERROR);
-            e.printStackTrace();
+            Alerts.showAlert("IO Exception", null, e.getMessage(), Alert.AlertType.ERROR);
         }
 
     }
