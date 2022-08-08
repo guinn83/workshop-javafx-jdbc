@@ -3,9 +3,9 @@ package com.workshop.javafx.model.dao.impl;
 import com.workshop.javafx.db.DB;
 import com.workshop.javafx.db.DbException;
 import com.workshop.javafx.db.DbIntegrityException;
+import com.workshop.javafx.model.dao.SellerDao;
 import com.workshop.javafx.model.entities.Department;
 import com.workshop.javafx.model.entities.Seller;
-import com.workshop.javafx.model.dao.SellerDao;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class SellerDaoJDBC implements SellerDao {
     public void insert(Seller obj) {
         PreparedStatement st = null;
         ResultSet rs;
-        try{
+        try {
             st = con.prepareStatement("" +
                     "SELECT Email " +
                     "FROM seller " +
@@ -38,9 +38,9 @@ public class SellerDaoJDBC implements SellerDao {
             }
 
             st = con.prepareStatement("" +
-                    "INSERT INTO seller " +
-                    "(Name, Email, BirthDate, BaseSalary, DepartmentId) " +
-                    "VALUES (?, ?, ?, ?, ?)",
+                            "INSERT INTO seller " +
+                            "(Name, Email, BirthDate, BaseSalary, DepartmentId) " +
+                            "VALUES (?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
 
             st.setString(1, obj.getName());

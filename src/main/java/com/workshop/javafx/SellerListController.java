@@ -1,8 +1,8 @@
 package com.workshop.javafx;
 
-import com.workshop.javafx.model.entities.Seller;
 import com.workshop.javafx.model.dao.DaoFactory;
 import com.workshop.javafx.model.dao.SellerDao;
+import com.workshop.javafx.model.entities.Seller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+@SuppressWarnings("ClassEscapesDefinedScope")
 public class SellerListController implements Initializable {
 
     private SellerDao sellerDao = DaoFactory.createSellerDao();
@@ -29,12 +30,11 @@ public class SellerListController implements Initializable {
     private TableColumn<Seller, String> tableColumnName;
     @FXML
     private Button btNew;
+    private ObservableList<Seller> obsList;
 
     public void setSellerDao(SellerDao sellerDao) {
         this.sellerDao = sellerDao;
     }
-
-    private ObservableList<Seller> obsList;
 
     @FXML
     public void onBtNewAction() {

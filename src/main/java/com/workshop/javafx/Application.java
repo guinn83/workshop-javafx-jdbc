@@ -10,8 +10,17 @@ import java.io.IOException;
 public class Application extends javafx.application.Application {
 
     private static Scene mainScene;
+
+    public static Scene getMainScene() {
+        return mainScene;
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+
     @Override
-    public void start(Stage stage){
+    public void start(Stage stage) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("MainView.fxml"));
             ScrollPane scrollPane = fxmlLoader.load();
@@ -26,13 +35,5 @@ public class Application extends javafx.application.Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static Scene getMainScene() {
-        return mainScene;
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 }

@@ -3,8 +3,8 @@ package com.workshop.javafx.model.dao.impl;
 import com.workshop.javafx.db.DB;
 import com.workshop.javafx.db.DbException;
 import com.workshop.javafx.db.DbIntegrityException;
-import com.workshop.javafx.model.entities.Department;
 import com.workshop.javafx.model.dao.DepartmentDao;
+import com.workshop.javafx.model.entities.Department;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
     public void insert(Department obj) {
         PreparedStatement st = null;
         ResultSet rs;
-        try{
+        try {
             st = con.prepareStatement("" +
                     "SELECT Name " +
                     "FROM department " +
@@ -35,9 +35,9 @@ public class DepartmentDaoJDBC implements DepartmentDao {
             }
 
             st = con.prepareStatement("" +
-                    "INSERT INTO department " +
-                    "(Name) " +
-                    "VALUES (?)",
+                            "INSERT INTO department " +
+                            "(Name) " +
+                            "VALUES (?)",
                     Statement.RETURN_GENERATED_KEYS);
 
             st.setString(1, obj.getName());

@@ -1,4 +1,5 @@
 package com.workshop.javafx.util;
+
 import javafx.scene.control.TextField;
 
 public class Constraints {

@@ -26,9 +26,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+@SuppressWarnings("ClassEscapesDefinedScope")
 public class DepartmentListController implements Initializable {
 
-    private DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
+    private DepartmentDao departmentDao;
 
     @FXML
     private TableView<Department> tableViewDepartment;
@@ -38,22 +39,27 @@ public class DepartmentListController implements Initializable {
     private TableColumn<Department, String> tableColumnName;
     @FXML
     private Button btNew;
+    private ObservableList<Department> obsList;
+
+    public DepartmentDao getDepartmentDao() {
+        return departmentDao;
+    }
 
     public void setDepartmentDao(DepartmentDao departmentDao) {
         this.departmentDao = departmentDao;
     }
 
-    private ObservableList<Department> obsList;
-
     @FXML
     public void onBtNewAction(ActionEvent event) {
         Stage parentStage = Utils.currentStage(event);
-        createDialogForm("DepartmentForm.fxml", parentStage);
+        Department obj = new Department();
+        createDialogForm(obj, "DepartmentForm.fxml", parentStage);
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setDepartmentDao(DaoFactory.createDepartmentDao());
         initializeNodes();
         updateTableView();
     }
@@ -75,10 +81,14 @@ public class DepartmentListController implements Initializable {
         tableViewDepartment.setItems(obsList);
     }
 
-    private void createDialogForm(String absoluteName, Stage parentStage) {
+    private void createDialogForm(Department obj, String absoluteName, Stage parentStage) {
         try {
             FXMLLoader loader = new FXMLLoader(Application.class.getResource(absoluteName));
             Pane pane = loader.load();
+
+            DepartmentFormController controller = loader.getController();
+            controller.setDepartment(obj);
+            controller.updateFormData();
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Enter department data");
@@ -87,6 +97,7 @@ public class DepartmentListController implements Initializable {
             dialogStage.initOwner(parentStage);
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.showAndWait();
+
 
         } catch (IOException e) {
             Alerts.showAlert("IO Exception", null, e.getMessage(), Alert.AlertType.ERROR);
