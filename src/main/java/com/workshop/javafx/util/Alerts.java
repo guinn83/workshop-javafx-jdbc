@@ -1,4 +1,4 @@
-package com.workshop.util;
+package com.workshop.javafx.util;
 
 import javafx.scene.control.Alert;
 

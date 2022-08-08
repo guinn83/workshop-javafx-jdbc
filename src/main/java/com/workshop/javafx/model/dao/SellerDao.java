@@ -1,6 +1,6 @@
-package com.workshop.model.dao;
+package com.workshop.javafx.model.dao;
 
-import com.workshop.model.entities.Seller;
+import com.workshop.javafx.model.entities.Seller;
 
 import java.util.List;
 

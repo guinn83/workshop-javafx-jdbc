@@ -1,4 +1,4 @@
-package com.workshop.db;
+package com.workshop.javafx.db;
 
 public class DbIntegrityException extends RuntimeException {
     public DbIntegrityException(String message) {

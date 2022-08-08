@@ -1,4 +1,4 @@
-package com.workshop.db;
+package com.workshop.javafx.db;
 
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -1,11 +1,11 @@
-package com.workshop.model.dao.impl;
+package com.workshop.javafx.model.dao.impl;
 
-import com.workshop.db.DB;
-import com.workshop.db.DbException;
-import com.workshop.db.DbIntegrityException;
-import com.workshop.model.dao.SellerDao;
-import com.workshop.model.entities.Department;
-import com.workshop.model.entities.Seller;
+import com.workshop.javafx.db.DB;
+import com.workshop.javafx.db.DbException;
+import com.workshop.javafx.db.DbIntegrityException;
+import com.workshop.javafx.model.entities.Department;
+import com.workshop.javafx.model.entities.Seller;
+import com.workshop.javafx.model.dao.SellerDao;
 
 import java.sql.*;
 import java.util.ArrayList;

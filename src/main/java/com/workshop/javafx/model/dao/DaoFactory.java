@@ -1,8 +1,8 @@
-package com.workshop.model.dao;
+package com.workshop.javafx.model.dao;
 
-import com.workshop.db.DB;
-import com.workshop.model.dao.impl.SellerDaoJDBC;
-import com.workshop.model.dao.impl.DepartmentDaoJDBC;
+import com.workshop.javafx.db.DB;
+import com.workshop.javafx.model.dao.impl.DepartmentDaoJDBC;
+import com.workshop.javafx.model.dao.impl.SellerDaoJDBC;
 
 
 public class DaoFactory {

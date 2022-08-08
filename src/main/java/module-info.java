@@ -11,4 +11,6 @@ module com.example.java_javafx1 {
 
     opens com.workshop.javafx to javafx.fxml;
     exports com.workshop.javafx;
+    exports com.workshop.javafx.model.entities;
+    opens com.workshop.javafx.model.entities to javafx.fxml;
 }

@@ -1,6 +1,6 @@
 package com.workshop.javafx;
 
-import com.workshop.util.Alerts;
+import com.workshop.javafx.util.Alerts;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -57,8 +57,13 @@ public class MainViewController implements Initializable {
             mainVbox.getChildren().add(mainMenu);
             mainVbox.getChildren().addAll(newVbox.getChildren());
 
+//            DepartmentListController controller = loader.getController();
+//            controller.setDepartmentDao(DaoFactory.createDepartmentDao());
+//            controller.updateTableView();
+
         } catch (IOException e) {
             Alerts.showAlert("IO Exception", null, e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
         }
 
     }
