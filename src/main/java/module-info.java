@@ -13,4 +13,11 @@ module com.example.java_javafx1 {
     exports com.workshop.javafx;
     exports com.workshop.javafx.model.entities;
     opens com.workshop.javafx.model.entities to javafx.fxml;
+    exports com.workshop.javafx.model.services;
+    opens com.workshop.javafx.model.services to javafx.fxml;
+    exports com.workshop.javafx.controllers;
+    opens com.workshop.javafx.controllers to javafx.fxml;
+    exports com.workshop.javafx.listeners;
+    opens com.workshop.javafx.listeners to javafx.fxml;
+
 }

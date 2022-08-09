@@ -1,5 +1,6 @@
-package com.workshop.javafx;
+package com.workshop.javafx.controllers;
 
+import com.workshop.javafx.Application;
 import com.workshop.javafx.util.Alerts;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

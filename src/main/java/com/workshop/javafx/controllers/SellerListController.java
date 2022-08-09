@@ -1,5 +1,6 @@
-package com.workshop.javafx;
+package com.workshop.javafx.controllers;
 
+import com.workshop.javafx.Application;
 import com.workshop.javafx.model.dao.DaoFactory;
 import com.workshop.javafx.model.dao.SellerDao;
 import com.workshop.javafx.model.entities.Seller;
