@@ -1,7 +1,6 @@
 package com.workshop.javafx.controllers;
 
 import com.workshop.javafx.db.DbException;
-import com.workshop.javafx.listeners.DataChangeListener;
 import com.workshop.javafx.model.entities.Department;
 import com.workshop.javafx.model.services.DepartmentService;
 import com.workshop.javafx.util.Alerts;
@@ -16,16 +15,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
-public class DepartmentFormController implements Initializable {
+public class DepartmentFormController extends Observable implements Initializable {
 
     private Department entity;
     private DepartmentService service;
 
-    private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
     @FXML
     private Button btSave;
@@ -46,10 +43,6 @@ public class DepartmentFormController implements Initializable {
         this.entity = entity;
     }
 
-    public void subscribeDataChangeListener(DataChangeListener listener) {
-        dataChangeListeners.add(listener);
-    }
-
     @FXML
     public void onBtSaveAction(ActionEvent event) {
         if (entity == null) {
@@ -61,15 +54,12 @@ public class DepartmentFormController implements Initializable {
         try {
             entity = getFormData();
             service.saveOrUpdate(entity);
-            notifyDataChangeListeners();
+            setChanged();
+            notifyObservers();
             Utils.currentStage(event).close();
         } catch (DbException e) {
             Alerts.showAlert("Error saving object", null, e.getMessage(), Alert.AlertType.ERROR);
         }
-    }
-
-    private void notifyDataChangeListeners() {
-        dataChangeListeners.forEach(DataChangeListener::onDataChanged);
     }
 
     public void onBtCancelAction(ActionEvent event) {
@@ -85,7 +75,6 @@ public class DepartmentFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         initializeNodes();
     }
 

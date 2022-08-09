@@ -1,7 +1,6 @@
 package com.workshop.javafx.controllers;
 
 import com.workshop.javafx.Application;
-import com.workshop.javafx.listeners.DataChangeListener;
 import com.workshop.javafx.model.entities.Department;
 import com.workshop.javafx.model.services.DepartmentService;
 import com.workshop.javafx.util.Alerts;
@@ -25,9 +24,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
-public class DepartmentListController implements Initializable, DataChangeListener {
+public class DepartmentListController implements Initializable, Observer {
 
     private DepartmentService service;
 
@@ -41,7 +42,6 @@ public class DepartmentListController implements Initializable, DataChangeListen
     private Button btNew;
     private ObservableList<Department> obsList;
 
-
     public void setService(DepartmentService service) {
         this.service = service;
     }
@@ -52,7 +52,6 @@ public class DepartmentListController implements Initializable, DataChangeListen
         Department obj = new Department();
         createDialogForm(obj, "DepartmentForm.fxml", parentStage);
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -86,7 +85,7 @@ public class DepartmentListController implements Initializable, DataChangeListen
             DepartmentFormController controller = loader.getController();
             controller.setDepartment(obj);
             controller.setService(new DepartmentService());
-            controller.subscribeDataChangeListener(this);
+            controller.addObserver(this);
             controller.updateFormData();
 
             Stage dialogStage = new Stage();
@@ -106,7 +105,7 @@ public class DepartmentListController implements Initializable, DataChangeListen
     }
 
     @Override
-    public void onDataChanged() {
+    public void update(Observable o, Object arg) {
         updateTableView();
     }
 }
