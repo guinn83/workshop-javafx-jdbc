@@ -17,7 +17,5 @@ module com.example.java_javafx1 {
     opens com.workshop.javafx.model.services to javafx.fxml;
     exports com.workshop.javafx.controllers;
     opens com.workshop.javafx.controllers to javafx.fxml;
-    exports com.workshop.javafx.listeners;
-    opens com.workshop.javafx.listeners to javafx.fxml;
 
 }
