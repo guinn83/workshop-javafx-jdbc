@@ -4,6 +4,7 @@ import com.workshop.javafx.Application;
 import com.workshop.javafx.db.DbIntegrityException;
 import com.workshop.javafx.model.entities.Department;
 import com.workshop.javafx.model.entities.Seller;
+import com.workshop.javafx.model.services.DepartmentService;
 import com.workshop.javafx.model.services.SellerService;
 import com.workshop.javafx.util.Alerts;
 import com.workshop.javafx.util.Utils;
@@ -20,15 +21,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SellerListController implements Initializable, Observer {
 
@@ -54,8 +50,6 @@ public class SellerListController implements Initializable, Observer {
     private TableColumn<Seller, Seller> tableColumnEDIT;
     @FXML
     private TableColumn<Seller, Seller> tableColumnREMOVE;
-
-    private ObservableList<Seller> obsList;
 
     public void setService(SellerService service) {
         this.service = service;
@@ -92,7 +86,7 @@ public class SellerListController implements Initializable, Observer {
             throw new IllegalStateException("Service was null");
         }
         List<Seller> list = service.findAll();
-        obsList = FXCollections.observableArrayList(list);
+        ObservableList<Seller> obsList = FXCollections.observableArrayList(list);
         tableViewSeller.setItems(obsList);
 
         Utils.formatTableColumnDate(tableColumnBirthDate, "dd/MM/yyyy");
@@ -112,6 +106,7 @@ public class SellerListController implements Initializable, Observer {
             SellerFormController controller = loader.getController();
             controller.setSeller(obj);
             controller.setService(new SellerService());
+            controller.setDepartmentService(new DepartmentService());
             controller.addObserver(this);
             controller.updateFormData();
 
