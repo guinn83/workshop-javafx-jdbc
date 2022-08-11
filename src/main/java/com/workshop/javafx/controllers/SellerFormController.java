@@ -76,7 +76,6 @@ public class SellerFormController extends Observable implements Initializable {
             throw new IllegalStateException("Service was null");
         }
         try {
-            errorMessagesReset();
             entity = getFormData();
             service.saveOrUpdate(entity);
             setChanged();
@@ -118,7 +117,7 @@ public class SellerFormController extends Observable implements Initializable {
             obj.setName(txtName.getText());
             obj.setEmail(txtEmail.getText());
             obj.setBirthDate(Date.from(dateBirthDate.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            obj.setBaseSalary(Double.valueOf(txtBaseSalary.getText()));
+            obj.setBaseSalary(Utils.tryPargeToDouble(txtBaseSalary.getText()));
             obj.setDepartment(cmbDepartment.getValue());
         }
 
@@ -132,7 +131,6 @@ public class SellerFormController extends Observable implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeNodes();
-
     }
 
     private void initializeNodes() {
@@ -149,11 +147,7 @@ public class SellerFormController extends Observable implements Initializable {
             txtId.setText(String.valueOf(entity.getId()));
             txtName.setText(entity.getName() == null ? "" : String.valueOf(entity.getName()));
             txtEmail.setText(entity.getEmail() == null ? "" : String.valueOf(entity.getEmail()));
-
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String birthDateStr = sdf.format(entity.getBirthDate());
-            dateBirthDate.setValue(LocalDate.parse(birthDateStr));
-
+            dateBirthDate.setValue(LocalDate.ofInstant(entity.getBirthDate().toInstant(), ZoneId.systemDefault()));
             txtBaseSalary.setText(entity.getBaseSalary() == null ? "" : String.format("%.2f", entity.getBaseSalary()));
         }
 
@@ -174,31 +168,13 @@ public class SellerFormController extends Observable implements Initializable {
         if (entity.getId() != null) cmbDepartment.getSelectionModel().select(entity.getDepartment().getId());
     }
 
-    private void errorMessagesReset() {
-        lbErrorName.setText("");
-        lbErrorEmail.setText("");
-        lbErrorBirthDate.setText("");
-        lbErrorBaseSalary.setText("");
-        lbErrorDepartment.setText("");
-    }
-
     private void setErrorMessages(Map<String, String> errors) {
         Set<String> field = errors.keySet();
 
-        if (field.contains("name")) {
-            lbErrorName.setText(errors.get("name"));
-        }
-        if (field.contains("email")) {
-            lbErrorEmail.setText(errors.get("email"));
-        }
-        if (field.contains("birthDate")) {
-            lbErrorBirthDate.setText(errors.get("birthDate"));
-        }
-        if (field.contains("baseSalary")) {
-            lbErrorBaseSalary.setText(errors.get("baseSalary"));
-        }
-        if (field.contains("department")) {
-            lbErrorDepartment.setText(errors.get("department"));
-        }
+        lbErrorName.setText(field.contains("name") ? errors.get("name") : "");
+        lbErrorEmail.setText(field.contains("email") ? errors.get("email") : "");
+        lbErrorBirthDate.setText(field.contains("birthDate") ? errors.get("birthDate") : "");
+        lbErrorBaseSalary.setText(field.contains("baseSalary") ? errors.get("baseSalary") : "");
+        lbErrorDepartment.setText(field.contains("department") ? errors.get("department") : "");
     }
 }
